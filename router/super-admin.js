@@ -10,6 +10,7 @@ router.get('/customer',Auth, controller.getCustomers)
 router.get('/vehicles',Auth, controller.getVehicles)
 router.get('/records',Auth, controller.getServiceRecords)
 router.post('/agent',Auth, controller.serviceAgent) 
+router.get('/agents',Auth, controller.getServiceAgents) 
 
 router.delete('delete-customer/:id',Auth, controller.deleteCustomer)
 router.delete('delete-vehicle/:id',Auth, controller.deleteVehicle)
@@ -20,5 +21,5 @@ router.patch('edit-customer/:id',Auth, controller.editCustomer)
 router.patch('edit-vehicle/:id',Auth, controller.editVehicle)
 router.patch('edit-record/:id',Auth, controller.editRecord)
 router.patch('edit-agent/:id',Auth, controller.editAgent)
-f
+
 module.exports = router

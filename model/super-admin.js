@@ -59,7 +59,7 @@ superAdmin.statics.loginWithEmailAndPassword = async (credential) => {
     const user = this;
   
     try {
-      const token = jwt.sign({ id: user._id }, "hasantha", {
+      const token = jwt.sign({ id: user._id }, process.env.SECURE, {
         expiresIn: "1h",
       });
       user.tokens = user.tokens.concat({ token });

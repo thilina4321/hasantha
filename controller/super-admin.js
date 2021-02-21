@@ -49,6 +49,17 @@ exports.serviceAgent = async (req, res) => {
   }
 };
 
+
+exports.getServiceAgents = async (req, res) => {
+  try {
+    
+    const agents = await ServiceAgent.find()
+    res.send({ agents: agents });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
 exports.getCustomers = async (req, res) => {
 
   try {

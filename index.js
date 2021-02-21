@@ -5,8 +5,9 @@ const admin = require('./router/super-admin')
 const agent = require('./router/service-agent')
 const customer = require('./router/customer')
 const cors = require('cors')
+require('dotenv').config()
 
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(cors())
@@ -17,7 +18,7 @@ app.use('/customer', customer)
 
 app.listen(port, () => {
   mongoose
-    .connect("mongodb://127.0.0.1:27017/hasantha", {
+    .connect(process.env.DATABASE, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -28,3 +29,7 @@ app.listen(port, () => {
       console.log(error);
     });
 });
+
+
+// heroku @1newflowers
+// mongo 

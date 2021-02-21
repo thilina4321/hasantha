@@ -48,11 +48,11 @@ exports.customerVehicle = async (req, res) => {
 };
 
 exports.editVehicle = async (req, res) => {
-  const customerId = req.customer;
+  const id = req.params.id;
   const customerData = req.body;
   try {
     const editCustomer = await Vehicle.findByIdAndUpdate(
-      customerId,
+      id,
       { ...customerData },
       { runValidators: true, new: true }
     );
@@ -64,7 +64,7 @@ exports.editVehicle = async (req, res) => {
 };
 
 exports.deleteVehicle = async (req, res) => {
-  const id = req.customer;
+  const id = req.params.id;
   try {
     const customer = await Vehicle.findByIdAndDelete(id);
     res.send({ customer });
