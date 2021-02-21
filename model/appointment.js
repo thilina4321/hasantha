@@ -11,6 +11,10 @@ const appointmentSchema = new Schema({
     type:Schema.Types.ObjectId,
     ref:'Customer'
   },
+  customerName:String,
+  vehicleType:String,
+  vehicleColor:String,
+  
   serviceCategory:String,
   date:{
     type:Date,
@@ -19,6 +23,10 @@ const appointmentSchema = new Schema({
   price:{
       type:Number
 
+  },
+  status:{
+    type:String,
+    default:"PENDING"
   }
   
 });

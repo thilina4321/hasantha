@@ -10,11 +10,15 @@ const serviceRecords = new Schema({
       type:Schema.Types.ObjectId,
       ref:'Vehicle'
   },
+  customerName:String,
+  vehicleType:String,
+  vehicleColor:String,
   serviceCategory:String,
   date:{
     type:Date,
     default:Date.now()
   },
+  completeDate:String,
   status:{
     type:String
   }

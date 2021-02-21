@@ -79,10 +79,99 @@ exports.getServiceRecords = async (req, res) => {
   }
 };
 
-// exports.customerVehicle = async(req,res)=>{
-//     try {
+exports.deleteCustomer = async(req,res)=>{
+  const id = req.params.id
+    try {
+      const customer = await Customer.findByIdAndDelete(id)
+      res.send({message:"Delete succeedd", customer})
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
 
-//     } catch (error) {
-// res.status(500).send({error:error.message})
-//     }
-// }
+exports.deleteVehicle = async(req,res)=>{
+  const id = req.params.id
+    try {
+      const vehicle = await Vehicle.findByIdAndDelete(id)
+            res.send({message:"Delete succeedd",  vehicle})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+exports.deleteRecord = async(req,res)=>{
+  const id = req.params.id
+    try {
+      const record = await ServiceRecord.findByIdAndDelete(id)
+            res.send({message:"Delete succeedd",  record})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+exports.deleteAgent = async(req,res)=>{
+  const id = req.params.id
+    try {
+      const agent = await this.serviceAgent.findByIdAndDelete(id)
+            res.send({message:"Delete succeedd",  agent})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+
+
+
+
+exports.editCustomer = async(req,res)=>{
+  const id = req.params.id
+  const data = req.body
+    try {
+      const customer = await Customer.findByIdAndUpdate(id, {...data}, {new:true})
+      res.send({message:"Delete succeedd", customer})
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+exports.editVehicle = async(req,res)=>{
+  const id = req.params.id
+    const data = req.body
+
+    try {
+      const vehicle = await Vehicle.findByIdAndUpdate(id, {...data}, {new:true})
+            res.send({message:"Delete succeedd",  vehicle})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+exports.editRecord = async(req,res)=>{
+  const id = req.params.id
+    const data = req.body
+
+    try {
+      const record = await ServiceRecord.findByIdAndUpdate(id, {...data}, {new:true})
+            res.send({message:"Delete succeedd",  record})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}
+
+exports.editAgent = async(req,res)=>{
+  const id = req.params.id
+    const data = req.body
+
+    try {
+      const agent = await serviceAgent.findByIdAndUpdate(id, {...data}, {new:true})
+            res.send({message:"Delete succeedd",  agent})
+
+    } catch (error) {
+res.status(500).send({error:error.message})
+    }
+}

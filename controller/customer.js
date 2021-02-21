@@ -1,6 +1,7 @@
 const Customer = require("../model/customer");
 const Vehicle = require("../model/vehicle");
 const Appointment = require('../model/appointment')
+const ServiceRecords = require('../model/service-records')
 const bcrypt = require('bcryptjs')
 
 exports.registor = async (req, res) => {
@@ -84,10 +85,13 @@ exports.placeAppointment = async (req, res) => {
   }
 };
 
-// exports.customerVehicle = async(req,res)=>{
-//     try {
+exports.viewServiceRecords = async(req,res)=>{
 
-//     } catch (error) {
-// res.status(500).send({error:error.message})
-//     }
-// }
+  const id = req.customer
+    try {
+      const records = await ServiceRecords.find({customerId:id})
+      res.send({records})
+    } catch (error) {
+      res.status(500).send({error:error.message})
+    }
+}

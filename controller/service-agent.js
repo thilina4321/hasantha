@@ -36,10 +36,11 @@ exports.createRecord = async (req, res) => {
 
 exports.editRecord = async (req, res) => {
   const recordData = req.body;
+  const id = req.params.id
 
   try {
     const record = await ServiceRecord.findByIdAndUpdate(
-      recordData.id,
+      id,
       {
         ...recordData,
       },
@@ -62,6 +63,15 @@ exports.deleteRecord = async (req, res) => {
   }
 };
 
+exports.viewServiceRecords = async (req, res) => {
+  try {
+    const records = await ServiceRecord.find();
+    res.send({ records });
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
 exports.appointments = async (req, res) => {
   try {
     const appointment = await Appointment.find();
@@ -72,11 +82,12 @@ exports.appointments = async (req, res) => {
 };
 
 exports.appointmentDecision = async (req, res) => {
-  const appointmentData = rea.body;
+  const {status} = rea.body;
+  const id =req.params.id
   try {
     const appointment = await Appointment.findByIdAndUpdate(
-      appointmentData.id,
-      { ...appointmentData }
+      id,
+      { status }
     );
     res.send({ appointment });
   } catch (error) {
